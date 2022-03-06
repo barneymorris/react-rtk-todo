@@ -62,7 +62,7 @@ export const TodosSlice = createSlice({
     [fetchTodos.rejected.type]: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
       state.todos = [];
-      state.error = "";
+      state.error = action.payload;
     },
   },
 });
