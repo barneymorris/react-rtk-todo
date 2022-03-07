@@ -9,9 +9,9 @@ interface TodosState {
   error: string;
 }
 
-const initialState: TodosState = {
-  todos: todosMock,
-  isLoading: false,
+export const initialState: TodosState = {
+  todos: [],
+  isLoading: true,
   error: "",
 };
 

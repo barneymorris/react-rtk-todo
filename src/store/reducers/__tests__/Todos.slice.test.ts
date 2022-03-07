@@ -2,21 +2,29 @@ import { todosMock } from "../../../mocks/todos.mocks";
 import { fetchTodos } from "../Todos.actions";
 import reducer, { TodosSlice } from "./../Todos.slice";
 
+const initialState = {
+  todos: todosMock,
+  isLoading: false,
+  error: "",
+};
+
 describe("TodosSlice", () => {
   it("should return the initial state", () => {
     expect(reducer(undefined, { type: "UNDEFINED_ACTION" })).toEqual({
-      todos: todosMock,
-      isLoading: false,
+      todos: [],
+      isLoading: true,
       error: "",
     });
   });
 
   it("should add a new todo by correspondig action", () => {
-    const lastIndex = reducer(undefined, {
+    const lastIndex = reducer(initialState, {
       type: "UNDEFINED_ACTION",
     }).todos.slice(-1)[0].id;
 
-    expect(reducer(undefined, TodosSlice.actions.addTodo("New todo"))).toEqual({
+    expect(
+      reducer(initialState, TodosSlice.actions.addTodo("New todo"))
+    ).toEqual({
       todos: [
         ...todosMock,
         {
@@ -32,12 +40,12 @@ describe("TodosSlice", () => {
   });
 
   it("should remove a todo by correspondig action", () => {
-    const lastIndex = reducer(undefined, {
+    const lastIndex = reducer(initialState, {
       type: "UNDEFINED_ACTION",
     }).todos.slice(-1)[0].id;
 
     expect(
-      reducer(undefined, TodosSlice.actions.removeTodo(lastIndex))
+      reducer(initialState, TodosSlice.actions.removeTodo(lastIndex))
     ).toEqual({
       todos: todosMock.filter((item) => item.id !== lastIndex),
       isLoading: false,
@@ -46,14 +54,14 @@ describe("TodosSlice", () => {
   });
 
   it("should toogle a todo by correspondig action", () => {
-    const lastIndex = reducer(undefined, {
+    const lastIndex = reducer(initialState, {
       type: "UNDEFINED_ACTION",
     }).todos.slice(-1)[0].id;
 
     const lastElement = todosMock.slice(-1)[0];
 
     expect(
-      reducer(undefined, TodosSlice.actions.toggleDone(lastIndex))
+      reducer(initialState, TodosSlice.actions.toggleDone(lastIndex))
     ).toEqual({
       todos: [
         ...todosMock.slice(0, 2),
@@ -71,7 +79,7 @@ describe("TodosSlice", () => {
 
   it("should have a loading = true and empty array of todos when todos is fetching", () => {
     expect(
-      reducer(undefined, {
+      reducer(initialState, {
         type: fetchTodos.pending.type,
       })
     ).toEqual({
@@ -83,7 +91,7 @@ describe("TodosSlice", () => {
 
   it("should have a loading = false and some error when fetching todos is rejected with an error", () => {
     expect(
-      reducer(undefined, {
+      reducer(initialState, {
         type: fetchTodos.rejected.type,
         payload: "Cannot fetch todos from jsonplaceholder api",
       })
@@ -96,7 +104,7 @@ describe("TodosSlice", () => {
 
   it("should return some todos when fetching todos is done", () => {
     expect(
-      reducer(undefined, {
+      reducer(initialState, {
         type: fetchTodos.fulfilled.type,
         payload: [
           {
