@@ -12,23 +12,33 @@ export const TodoList = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchTodos());
+    (!todos || !todos.length) && dispatch(fetchTodos());
+
+    // For prevent network infinity flood
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   return (
     <Box className={styles.list}>
-      {isLoading && <CircularProgress size={20} />}
+      {isLoading && (
+        <Box data-testid="todolist-loading-spinner">
+          <CircularProgress size={20} />
+        </Box>
+      )}
 
-      {!isLoading &&
-        todos.map((todo) => (
-          <TodoItem
-            title={todo.title}
-            completed={todo.completed}
-            id={todo.id}
-            key={todo.id}
-            userId={todo.userId}
-          />
-        ))}
+      {!isLoading && (
+        <Box data-testid="todolist-content">
+          {todos.map((todo) => (
+            <TodoItem
+              title={todo.title}
+              completed={todo.completed}
+              id={todo.id}
+              key={todo.id}
+              userId={todo.userId}
+            />
+          ))}
+        </Box>
+      )}
     </Box>
   );
 };

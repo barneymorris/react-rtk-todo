@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { todosMock } from "../../mocks/todos.mocks";
 import { ITodoItem } from "./../../models/ITodoItem";
 import { fetchTodos } from "./Todos.actions";
 
