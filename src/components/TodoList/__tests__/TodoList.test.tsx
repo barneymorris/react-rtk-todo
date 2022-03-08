@@ -1,4 +1,3 @@
-import React from "react";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import { render, screen } from "@testing-library/react";

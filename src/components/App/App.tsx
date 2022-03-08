@@ -49,6 +49,9 @@ export const App = () => {
             value={inputValue}
             className={styles.input}
             label="New Todo"
+            inputProps={{
+              "data-testid": "app-input",
+            }}
           />
           <Button
             disabled={!inputValue.trim().length}
@@ -56,6 +59,7 @@ export const App = () => {
             variant="contained"
             color="primary"
             classes={{ disabled: styles.buttonDisabled }}
+            data-testid="success-btn"
           >
             Add
           </Button>

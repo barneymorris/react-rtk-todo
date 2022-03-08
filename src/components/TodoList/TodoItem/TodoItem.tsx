@@ -31,11 +31,19 @@ export const TodoItem: React.FC<ITodoItem> = ({ title, completed, id }) => {
         {title}
       </Typography>
       <Box>
-        <Icon className={styles.todoWrapper} onClick={handleDone}>
+        <Icon
+          className={styles.todoWrapper}
+          onClick={handleDone}
+          data-testid="handle-done"
+        >
           <DoneIcon htmlColor={WHITE_PRIMARY} fontSize="medium" />
         </Icon>
 
-        <Icon className={styles.todoWrapper} onClick={handleRemove}>
+        <Icon
+          className={styles.todoWrapper}
+          onClick={handleRemove}
+          data-testid="handle-delete"
+        >
           <DeleteIcon htmlColor={WHITE_PRIMARY} fontSize="medium" />
         </Icon>
       </Box>
