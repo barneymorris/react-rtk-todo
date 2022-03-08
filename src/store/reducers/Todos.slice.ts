@@ -27,7 +27,9 @@ export const TodosSlice = createSlice({
     },
 
     addTodo(state, action: PayloadAction<string>) {
-      const lastIndex = state.todos.slice(-1)[0].id;
+      const lastIndex = state.todos.slice(-1)[0]
+        ? state.todos.slice(-1)[0].id
+        : -1;
       state.todos.push({
         userId: lastIndex + 1,
         id: lastIndex + 1,
