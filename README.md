@@ -1,15 +1,18 @@
-## Что за проект?
-  
-Простая тудушка, написанная на React + Redux (Redux Toolkit)
-Писал этот проект я в рамках изучания тестирования (react-testing-library + redux-mock-store), а так же в рамках перехода с классического Redux на Redux Tookit
 
-## Как запустить?
-Убедиться, что на ПК установлен свежий Node.js и NPM
+## What is it? 
 
-Клонируем репозиторий, и пишем следующие команды в корне проекта
-1) npm install
-2) npm run start
-3) Если нужен билд для прода - npm run build
+This is simple TODO list generator application.
+Was written using React and Redux Toolkit (tha last one is new technology, so this is was some kinda practicing)
+As as as I was write Unit and Integration tests for all this stuff. 
 
-Писал проект Борис Лебедев
+## How to run?
+Make sure you have Node.js >= 12 and NPM >=8
+
+Close this repo, and in terminal just type:
+1) npm install (for installing deps)
+2) npm run start (for local developing)
+3) npm run build (for production ready build)
+4) npm run  test (if you want to see some passed tests :))
+
+This project has been written by Boris Syrpin
 https://t.me/lebedevmoscow
